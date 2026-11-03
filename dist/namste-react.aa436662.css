@@ -1,0 +1,47 @@
+.header {
+  border: 1px solid #000;
+  justify-content: space-between;
+  display: flex;
+}
+
+.logo {
+  width: 100px;
+}
+
+.nav_container > ul {
+  display: flex;
+}
+
+.nav_container > ul > li {
+  margin: 10px;
+  padding: 10px;
+  list-style: none;
+}
+
+.res-card {
+  border: 1px solid #000;
+  width: 200px;
+  height: 300px;
+  padding: 10px;
+}
+
+.res-card:hover {
+  cursor: pointer;
+  border: 2px solid #000;
+}
+
+.search {
+  padding: 10px;
+}
+
+.res-logo {
+  width: 100%;
+  height: 100px;
+}
+
+.restaurant_container {
+  flex-wrap: wrap;
+  gap: 30px;
+  display: flex;
+}
+/*# sourceMappingURL=namste-react.aa436662.css.map */

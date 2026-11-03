@@ -1,0 +1,28 @@
+{
+  "name": "namste-react",
+  "version": "1.0.0",
+  "description": "sweety",
+  "homepage": "https://github.com/sweety-124/skills#readme",
+  "bugs": {
+    "url": "https://github.com/sweety-124/skills/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweety-124/skills.git"
+  },
+  "license": "ISC",
+  "author": "sweety",
+  "type": "commonjs",
+  "scripts": {
+    "start":"parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}
