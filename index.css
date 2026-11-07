@@ -44,6 +44,10 @@
   flex-wrap:wrap;
   gap:30px;
 }
+.filter{
+    display:flex;
+    padding:10px;
+}
 .filter-buttons{
     display:flex;
     gap:10px;
