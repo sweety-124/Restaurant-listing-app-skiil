@@ -1,4 +1,3 @@
-# Namste React
 
 A small restaurant listing app built with React. It displays restaurant cards, includes a top-rated filter, and shows a shimmer placeholder when the restaurant list is empty.
 
