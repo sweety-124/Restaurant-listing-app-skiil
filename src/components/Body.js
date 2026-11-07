@@ -1,11 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import mockData from "../utils/mockData";
 import { useState,useEffect} from "react";
-import react from "react";
 
 
 const Body = () => {
+  const [allRestaurants, setAllRestaurants] = useState(mockData);
   const [restaurants, setRestaurants] = useState(mockData);
+  const [searchText, setSearchText] = useState("");
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -39,6 +41,8 @@ const fetchData = async () => {
         ?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
     if (restaurantData) {
+      setAllRestaurants(restaurantData);
+      setFilteredRestaurants(restaurantData);
       setRestaurants(restaurantData);
     }
   } catch (error) {
@@ -46,22 +50,46 @@ const fetchData = async () => {
   }
 
 };
-  return ( restaurants.length === 0 ? <ShimmerCard /> :
+  return (
     <div className="body">
-      <div className="search">
-        Search
+      <div className="filter">
+           <div className="search">
+        <input type="text" className="search-input" onChange={(e) => setSearchText(e.target.value)} placeholder="Search for restaurants..." />
+        <button onClick={()=>{
+          const query = searchText.trim().toLowerCase();
+          const filteredRestaurants = allRestaurants.filter((res) =>
+            (res.info?.name ?? res.name ?? "").toLowerCase().includes(query)
+          );
+          setFilteredRestaurants(filteredRestaurants);
+        }}>Search</button>
       </div>
+       <button
+  onClick={() => {
+    setRestaurants(
+      allRestaurants.filter((r) => (r.info?.avgRating ?? r.rating ?? 0) > 4.5)
+    );
+  }}
+>
+  Top Rated Restaurants
+</button>
+      </div>  
       <div>
-        <div className="filter-buttons">
-          <button onClick={() => {setRestaurants(mockData.filter((r) => r.rating > 4.5))}}>Top Rated Restaurants</button>
-          <button>Filter 2</button>
-        </div>
+       
       </div>
       <div className="restaurant_container">
-        {
-          restaurants?.map((restaurant) => (
-            restaurant && <RestaurantCard key={restaurant?.info?.id} restaurant={restaurant?.info} />
-          ))
+        {filteredRestaurants.length === 0 ? <p>No restaurants found.</p> :
+          filteredRestaurants?.map((restaurant) => {
+            if (!restaurant) return null;
+
+            // API results are wrapped in `info`; the local mock data is not.
+            const details = restaurant.info ?? restaurant;
+            return (
+              <RestaurantCard
+                key={details.id}
+                restaurant={details}
+              />
+            );
+          })
         }
       </div>
     </div>
