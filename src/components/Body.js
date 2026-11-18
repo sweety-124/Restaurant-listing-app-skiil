@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import mockData from "../utils/mockData";
 import { useState,useEffect} from "react";
-
+import {Link} from "react-router-dom";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState(mockData);
@@ -84,10 +84,13 @@ const fetchData = async () => {
             // API results are wrapped in `info`; the local mock data is not.
             const details = restaurant.info ?? restaurant;
             return (
-              <RestaurantCard
+              <Link to={`/restaurant/123456`} key={details.id}>
+                 <RestaurantCard
                 key={details.id}
                 restaurant={details}
               />
+              </Link>
+           
             );
           })
         }
